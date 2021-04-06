@@ -13,6 +13,7 @@ class RegisterPageState extends State<RegisterPage> {
   RegisterPageState(this.user);
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final email = TextFormField(
@@ -20,7 +21,7 @@ class RegisterPageState extends State<RegisterPage> {
       autofocus: false,
       controller: userNameController,
       decoration: InputDecoration(
-        hintText: 'Email',
+        hintText: 'username',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -32,6 +33,15 @@ class RegisterPageState extends State<RegisterPage> {
       obscureText: true,
       decoration: InputDecoration(
         hintText: 'Password',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+     final name = TextFormField(
+      autofocus: false,
+      controller: nameController,
+      decoration: InputDecoration(
+        hintText: 'Name',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -49,11 +59,12 @@ class RegisterPageState extends State<RegisterPage> {
             //Navigator.of(context).pushNamed(Home.tag);
             if (user == null) {
               // tambah data
-              user = User(userNameController.text, passwordController.text);
+              user = User(userNameController.text, passwordController.text,nameController.text);
             } else {
               // ubah data
               user.username = userNameController.text;
               user.password = passwordController.text;
+              user.name = nameController.text;
             }
             // kembali ke layar sebelumnya dengan membawa objek item
             Navigator.pop(context, user);
@@ -75,6 +86,8 @@ class RegisterPageState extends State<RegisterPage> {
             email,
             SizedBox(height: 8.0),
             password,
+            SizedBox(height: 8.0),
+            name,
             SizedBox(height: 24.0),
             loginButton,
           ],

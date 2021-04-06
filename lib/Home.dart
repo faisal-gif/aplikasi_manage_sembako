@@ -93,7 +93,7 @@ class HomeState extends State<Home> {
               this.itemList[index].name,
               style: textStyle,
             ),
-            subtitle: Text(this.itemList[index].stock.toString()),
+            subtitle: Text(this.itemList[index].id.toString()),
             trailing: GestureDetector(
               child: DropdownButton<String>(
                 underline: SizedBox(),
@@ -138,8 +138,8 @@ class HomeState extends State<Home> {
               backgroundColor: Colors.black,
               child: Icon(Icons.account_balance),
             ),
-            title: Text(userList[index].username,style: TextStyle(fontSize: 25),),
-            subtitle: Text("2000000",style: TextStyle(fontSize: 25)),
+            title: Text(userList[index].name,style: TextStyle(fontSize: 25),),
+            subtitle: Text(userList[index].id.toString(),style: TextStyle(fontSize: 25)),
           ),
         );
       },

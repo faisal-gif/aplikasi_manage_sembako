@@ -17,7 +17,7 @@ class DbHelper {
     //create, read databases
     //create, read databases
     var database = openDatabase(path,
-        version: 5, onCreate: _createDb, onUpgrade: _onUpgrade);
+        version: 6, onCreate: _createDb, onUpgrade: _onUpgrade);
 //mengembalikan nilai object sebagai hasil dari fungsinya
     return database;
   }
@@ -45,7 +45,8 @@ class DbHelper {
     CREATE TABLE user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
-    password TEXT
+    password TEXT,
+    name TEXT
     )
     ''');
     await batch.commit();
@@ -60,7 +61,7 @@ class DbHelper {
   //select databases User
   Future<List<Map<String, dynamic>>> selectUser(int id) async {
     Database db = await this.initDb();
-    var mapList = await db.query('user', where: 'id = $id');
+    var mapList = await db.query('user',limit: 3, where: 'id = $id');
     return mapList;
   }
 
